@@ -30,7 +30,7 @@ namespace Fleck
             if(!MonoHelper.IsRunningOnMono()){
                   #if __MonoCS__
                   #else
-                    socket.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
+                    socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.IPOptions, true);
                   #endif
             }
             ListenerSocket = new SocketWrapper(socket);
@@ -60,7 +60,7 @@ namespace Fleck
 
             if (ipStr == "0.0.0.0" || ipStr == "[0000:0000:0000:0000:0000:0000:0000:0000]")
             {
-                return IPAddress.IPv6Any;
+                return IPAddress.Any;
             } else {
                 try {
                     return IPAddress.Parse(ipStr);
